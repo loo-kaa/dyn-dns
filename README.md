@@ -13,7 +13,7 @@ cd /usr/local/sbin
 
 Clone the repository.
 ```sh
-git clone
+git clone https://github.com/luca-a/dyn-dns.git
 ```
 
 ## 1. Setup
