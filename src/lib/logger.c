@@ -127,7 +127,7 @@ void print_to_file(const int level, const char* message) {
 /*
  * Print to file which can be a regular text file or STDOUT "file"
  */
-void print_to_stdout_daemon(const int level, const char* message) {
+void print_to_file_daemon(const int level, const char* message) {
 	int res = fprintf(log_global_set.out_file,
 		"%s%s\n", STDOUT_LOGLEVELS[level], message);
 
@@ -176,7 +176,7 @@ void logger_set_out_daemon() {
 	cleanup_internal();
 
 	log_global_set.use_stdout = 1;
-	log_global_set.logger_func = print_to_stdout_daemon;
+	log_global_set.logger_func = print_to_file_daemon;
 	log_global_set.out_file = stderr;
 }
 

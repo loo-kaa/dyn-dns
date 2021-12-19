@@ -27,7 +27,6 @@
 #define CLOUDFLARE_CONTENT_TYPE_HEADER "Content-Type: application/json"
 #define CLOUDFLARE_DNS_PATCH_DATA "{\"content\":\"%s\"}"
 
-// remove compile time access variables and use a config file to load clouflare access variables
 #define DYN_DNS_ETC "/etc/dyn-dns/"
 #define ACCESS_CONFIG_FILE_PATH DYN_DNS_ETC "cloudflare.config"
 
@@ -226,9 +225,6 @@ void dyn_dns_run(CURL* curl) {
 		log_debug("There is nothing to do");
 	}
 
-	// removing daemon_run variables
-	c_free_scope(daemon_run);
-
 	return;
 }
 
@@ -276,6 +272,9 @@ int main() {
 		}
 		else if(sig == SIGUSR1) {
 			dyn_dns_run(curl);
+
+			// removing daemon_run variables
+			c_free_scope(daemon_run);
 		}
 	}
 
