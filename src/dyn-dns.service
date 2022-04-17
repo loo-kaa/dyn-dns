@@ -1,0 +1,17 @@
+[Unit]
+Description=A dynamic dns daemon service
+After=network.target
+StartLimitBurst=5
+StartLimitIntervalSec=10
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5
+User=root
+ExecStart=/usr/local/sbin/dyn-dns/dyn-dns
+KillMode=process
+LogLevelMax=6
+
+[Install]
+WantedBy=multi-user.target
